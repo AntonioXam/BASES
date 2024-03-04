@@ -1,0 +1,15 @@
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS descontar10while $$
+
+CREATE PROCEDURE descontar10while()
+BEGIN
+	DECLARE num INT;
+	SET num=10;
+	WHILE num>=1 DO
+		SELECT num;
+		SET num=num-1;
+	END WHILE;
+END $$
+
+DELIMITER ;

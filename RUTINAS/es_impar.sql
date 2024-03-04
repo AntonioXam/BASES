@@ -1,0 +1,15 @@
+
+DELIMITER $$
+
+CREATE FUNCTION es_impar(numero INT) RETURNS INT
+BEGIN
+	DECLARE impar INT;
+	IF MOD(numero,2)=0 THEN
+		SET impar=FALSE;
+	ELSE
+		SET impar=TRUE;
+	END IF;
+	RETURN(impar);
+END $$
+
+DELIMITER ;

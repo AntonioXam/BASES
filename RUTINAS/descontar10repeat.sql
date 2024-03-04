@@ -1,0 +1,16 @@
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS descontar10repeat $$
+
+CREATE PROCEDURE descontar10repeat()
+BEGIN
+	DECLARE num INT;
+	SET num=10;
+	REPEAT
+		SELECT num;
+		SET num=num-1;
+	UNTIL num<1
+	END REPEAT;
+END $$
+
+DELIMITER ;

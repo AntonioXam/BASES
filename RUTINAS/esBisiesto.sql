@@ -1,0 +1,11 @@
+DELIMITER $$
+
+DROP FUNCTION IF EXISTS esBisiesto $$
+
+CREATE FUNCTION esBisiesto(a INT) RETURNS BOOLEAN
+
+BEGIN
+    RETURN (a % 4 = 0 AND a % 100 != 0) OR a % 400 = 0;
+END $$
+
+DELIMITER ;

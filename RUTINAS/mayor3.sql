@@ -1,0 +1,20 @@
+DELIMITER $$
+
+DROP FUNCTION IF EXISTS mayor3 $$
+
+CREATE FUNCTION mayor3(a INT,b INT,c INT)
+RETURNS INT
+BEGIN
+	
+	IF(a>b) THEN 
+		RETURN(a);
+	ELSE
+		IF(b>c) THEN
+			RETURN(b);
+		ELSE
+			RETURN(c);
+		END IF;
+	END IF;
+END $$
+
+DELIMITER ;

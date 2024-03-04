@@ -1,0 +1,16 @@
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS contar10repeat $$
+
+CREATE PROCEDURE contar10repeat()
+BEGIN
+	DECLARE num INT;
+	SET num=0;
+	REPEAT
+		SET num=num+1;
+		SELECT num;
+	UNTIL num>=10
+	END REPEAT;
+END $$
+
+DELIMITER ;

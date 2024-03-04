@@ -1,0 +1,15 @@
+DELIMITER $$
+
+DROP FUNCTION IF EXISTS es_vocalf $$
+
+CREATE FUNCTION es_vocalf(letra CHAR) RETURNS BOOLEAN
+BEGIN
+	IF letra IN ('a','e','i','o','u','A','E','I','O','U') THEN
+		RETURN TRUE;
+	ELSE
+		RETURN FALSE;
+	END IF;
+END $$
+
+DELIMITER ;
+	

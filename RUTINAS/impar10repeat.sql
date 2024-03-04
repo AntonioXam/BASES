@@ -1,0 +1,18 @@
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS impar10repeat $$
+
+CREATE PROCEDURE impar10repeat()
+BEGIN
+	DECLARE num INT;
+	SET num=0;
+	REPEAT
+		SET num=num+1;
+		IF(num%2)=1 THEN
+		SELECT num;
+		END IF;
+	UNTIL num>=10
+	END REPEAT;
+END $$
+
+DELIMITER ;

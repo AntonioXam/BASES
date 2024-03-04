@@ -1,0 +1,10 @@
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS fecha2 $$
+
+CREATE PROCEDURE fecha2(IN f DATE)
+BEGIN
+	SELECT CONCAT(day(f),"-",MONTH(f),"-",YEAR(f)) as Fecha;
+	
+END $$
+DELIMITER ;

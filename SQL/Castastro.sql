@@ -1,0 +1,41 @@
+CREATE DATABASE Catastro;
+
+USE Catastro;
+
+
+CREATE TABLE HABITANTE (
+	nif VARCHAR(10),
+	nombre VARCHAR(50) NOT NULL,
+	apellidos VARCHAR(50) NOT NULL,
+	direccion VARCHAR(50) NOT NULL,
+	municipio VARCHAR(50) NOT NULL,
+	cabeza_familia VARCHAR(10),
+	PRIMARY KEY(nif),
+	FOREIGN KEY(cabeza_familia) REFERENCES HABITANTE(nif)
+		ON DELETE SET NULL
+		ON UPDATE CASCADE
+);
+
+CREATE TABLE MUNICIPIO (
+	nombre VARCHAR(50),
+	extension INTEGER NOT NULL,
+	numviviendas INTEGER NOT NULL,
+	PRIMARY KEY(nombre)
+);
+
+CREATE TABLE VIVIENDA (
+	direccion VARCHAR(50),
+	municipio VARCHAR(50),
+	nifpropietario VARCHAR(10),
+	PRIMARY KEY(direccion,municipio),
+	FOREIGN KEY(municipio) REFERENCES MUNICIPIO(nombre)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY(nifpropietario) REFERENCES HABITANTE(nif)
+		ON DELETE SET NULL
+		ON UPDATE CASCADE
+);
+
+ALTER TABLE HABITANTE
+ADD FOREIGN KEY(direccion,municipio) REFERENCES VIVIENDA(direccion,municipio)
+	ON UPDATE CASCADE;
