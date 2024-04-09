@@ -1,0 +1,55 @@
+--1
+
+DROP DATABASE IF EXISTS SPSP;
+
+CREATE DATABASE SPSP;
+
+USE SPSP;
+
+
+CREATE TABLE S (
+
+	sn VARCHAR(4),
+	snombre VARCHAR(20)	NOT NULL,
+	estado INT,
+	ciudad VARCHAR(20)	NOT NULL,
+	PRIMARY KEY(sn)
+);
+
+CREATE TABLE P (
+	pn VARCHAR(4),
+	pnombre VARCHAR(20) NOT NULL,
+	color VARCHAR(20) NOT NULL,
+	peso INT NOT NULL,
+	ciudad VARCHAR(20) NOT NULL,
+	PRIMARY KEY(pn)
+	);
+
+CREATE TABLE SP (
+	sn VARCHAR(4),
+	pn VARCHAR(4),
+	cant INT NOT NULL,
+	PRIMARY KEY(sn,pn)
+	);
+	
+	
+ALTER TABLE SP
+ADD FOREIGN KEY(sn) REFERENCES S(sn)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE;
+	
+ALTER TABLE SP
+ADD FOREIGN KEY(pn) REFERENCES P(pn)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE;
+	
+	
+INSERT INTO S VALUES
+('S1','Salazar',20,'Londres'),
+('S2','Jaimes',10,'Paris'),
+('S3','Bernal',30,'Paris'),
+('S4','Corona',20,'Londres'),
+('S5','Aldana',30,'Atenas');
+
+INSERT INTO P VALUES
+('P1','tuerca','verde',12,'Paris'),
