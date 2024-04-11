@@ -51,5 +51,32 @@ INSERT INTO S VALUES
 ('S4','Corona',20,'Londres'),
 ('S5','Aldana',30,'Atenas');
 
-INSERT INTO P VALUES
-('P1','tuerca','verde',12,'Paris'),
+
+LOAD DATA INFILE 'C:\\P.txt' INTO TABLE P;
+
+
+SELECT * FROM S;
+SELECT * FROM P;
+
+/* Creamos una variable @TOTAL y le asignamos el valor 0*/
+
+SET @TOTAL=0;
+
+/* Visualizamos el valor de la variable @TOTAL*/
+
+SELECT @TOTAL;
+
+/* Creamos un trigger o Disparador
+ TRIGGER: Objeto que se asocia a una tabla y se activa cuando ocurre en ésta 
+ un evento particular.
+ 
+ EJemplo:Total piezas enviadas en una de las columnas de las tablas
+ en nuestro caso vamos a llevar la suma de todas las cantidades de todos los
+ productos enviados*/
+ 
+ CREATE TRIGGER sumar
+ AFTER INSERT ON SP
+ FOR EACH ROW
+ SET @TOTAL=@TOTAL+NEW.cant;
+ 
+ 

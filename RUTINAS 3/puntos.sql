@@ -1,0 +1,31 @@
+DELIMITER $$
+
+DROP FUNCTION IF EXISTS puntos $$
+
+CREATE FUNCTION puntos(e INT)
+RETURNS INT
+BEGIN
+	DECLARE ELO,EVI,total INT;
+	SET ELO=0;
+	SET EVI=0;
+	SET total=0;
+	
+	SET ELO=(SELECT COUNT(*) FROM Partidos WHERE golesL>golesV and eqlocal=e );
+	SET EVI=(SELECT COUNT(*) FROM Partidos WHERE golesL<golesV and eqvisit=e);
+	
+	IF ELO>EVI THEN
+	SET ELO=ELO*3;
+	ELSEIF ELO<EVI THEN
+	SET EVI=EVI*3;
+	ELSE
+	SET ELO=ELO+1;
+	SET EVI=EVI+1;
+	END IF;
+	
+	SET total=ELO+EVI;
+	RETURN total;
+	
+	
+END $$
+
+DELIMITER ;
