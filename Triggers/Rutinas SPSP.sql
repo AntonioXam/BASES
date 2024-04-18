@@ -77,6 +77,39 @@ SELECT @TOTAL;
  CREATE TRIGGER sumar
  AFTER INSERT ON SP
  FOR EACH ROW
- SET @TOTAL=@TOTAL+NEW.cant;
+ SET @TOTAL=@TOTAL+NEW.cant; /* Nuevo registro*/
  
+ INSERT INTO SP VALUES('S1','P1',300);
+ INSERT INTO SP VALUES('S1','P2',200);
+ INSERT INTO SP VALUES('S1','P3',400);
+   
+   
+ /*Trigger para el borrado*/
+ CREATE TRIGGER restar
+ BEFORE DELETE ON SP
+ FOR EACH ROW
+ SET @TOTAL=@TOTAL-OLD.cant; /*Viejo registro*/
  
+ DELETE FROM SP
+ WHERE sn='S1' and pn='P3';
+ 
+
+SELECT @TOTAL;
+
+
+/* Trigger para las modificaciones */
+
+CREATE TRIGGER cambiar
+BEFORE UPDATE ON SP
+FOR EACH ROW
+SET @TOTAL=@TOTAL-OLD.cant+NEW.cant;
+
+SELECT @TOTAL;
+
+UPDATE SP
+SET cant=800
+WHERE sn='S1' AND pn='P1';
+
+SELECT @TOTAL;
+
+SELECT * FROM SP;
