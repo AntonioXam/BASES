@@ -1,0 +1,50 @@
+DROP DATABASE IF EXISTS Notas;
+
+CREATE DATABASE Notas;
+
+USE Notas;
+
+CREATE TABLE ASIGNATURA (
+	codAsig VARCHAR(4),
+	nomAsig VARCHAR(50) NOT NULL,
+	curso VARCHAR(50) NOT NULL,
+	horas INTEGER,
+	PRIMARY KEY(codAsig)
+	);
+
+
+CREATE TABLE ALUMNO (
+	codAlum INTEGER AUTO_INCREMENT,
+	nomAlum VARCHAR(50) NOT NULL,
+	fechanac DATE,
+	PRIMARY KEY(codAlum)
+	);
+	
+CREATE TABLE NOTA (
+	codAlum INTEGER,
+	codAsig VARCHAR(4),
+	nota INTEGER,
+	PRIMARY KEY(codAlum,codAsig)
+	);
+	
+ALTER TABLE NOTA
+ADD FOREIGN KEY(codAlum) REFERENCES ALUMNO(codAlum)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE;
+	
+ALTER TABLE NOTA
+ADD FOREIGN KEY(codAsig) REFERENCES ASIGNATURA(codAsig)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE;
+	
+INSERT INTO ASIGNATURA VALUES
+('BD','Bases de datos','1º DAW',5),
+('SI','Sistemas Informaticos','1º DAW',8),
+('ED','Entornos de Desarrollo','2º DAW',3),
+('DIW','Diseño de Interfaces Web','2º DAW',6);
+
+INSERT INTO ALUMNO VALUES 
+(0,'Mariano',2024-04-11),
+(0,'Luis',2024-04-12),
+(0,'Antonio',2024-04-13),
+(0,'Jorge',2024-04-14);
