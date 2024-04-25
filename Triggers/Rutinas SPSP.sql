@@ -6,7 +6,7 @@ CREATE DATABASE SPSP;
 
 USE SPSP;
 
-
+#--hacer trigger para ir sumando las ventas
 CREATE TABLE S (
 
 	sn VARCHAR(4),
@@ -43,13 +43,31 @@ ADD FOREIGN KEY(pn) REFERENCES P(pn)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE;
 	
-	
+#-- crear procedure para ver cuanto se ha vendido	
 INSERT INTO S VALUES
 ('S1','Salazar',20,'Londres'),
 ('S2','Jaimes',10,'Paris'),
 ('S3','Bernal',30,'Paris'),
 ('S4','Corona',20,'Londres'),
 ('S5','Aldana',30,'Atenas');
+
+INSERT INTO P VALUES
+('P1','Camisa','Azul',200,'Londres'),
+('P2','Pantalon','Negro',300,'Paris'),
+('P3','Vestido','Rojo',150,'Atenas'),
+('P4','Zapatos','Cafe',100,'Atenas'),
+('P5','Bufanda','Verde',50,'Londres');
+
+INSERT INTO SP VALUES
+('S1','P1',5),
+('S1','P2',10),
+('S2','P3',15),
+('S3','P4',20),
+('S4','P5',25),
+('S5','P1',30);
+
+
+
 
 
 LOAD DATA INFILE 'C:\\P.txt' INTO TABLE P;
@@ -113,3 +131,6 @@ WHERE sn='S1' AND pn='P1';
 SELECT @TOTAL;
 
 SELECT * FROM SP;
+
+
+
