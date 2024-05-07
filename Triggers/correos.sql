@@ -4,6 +4,7 @@ CREATE DATABASE Correos;
 
 USE Correos;
 
+
 CREATE TABLE usuario (
 id INTEGER AUTO_INCREMENT,
 nombre VARCHAR(50) NOT NULL,
@@ -54,3 +55,9 @@ INSERT INTO usuario VALUES(0,'Federico','Garcia','Lorca','poeta@spain.es');
 INSERT INTO usuario VALUES(0,'Emilia','Pardo','Bazan',NULL);
 
 select * from usuario;
+
+
+
+
+
+
