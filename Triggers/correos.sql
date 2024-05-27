@@ -15,6 +15,10 @@ PRIMARY KEY(id)
 );
 
 
+
+
+
+
 DROP FUNCTION IF EXISTS crear_email;
 
 DELIMITER $$
@@ -31,6 +35,17 @@ RETURN CORREO;
 END $$
 
 DELIMITER ;
+
+
+
+
+CREATE TRIGGER eliminar_email_usuario
+BEFORE DELETE ON usuario
+FOR EACH ROW
+BEGIN
+    DELETE FROM email
+    WHERE id = OLD.id;
+END;
 
 
 
