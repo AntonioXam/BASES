@@ -10,8 +10,8 @@ BEGIN
 	SET PL=0;
 	SET PV=0;
 	
-	SET PL=(SELECT SUM(puntosL) FROM Partidos WHERE elocal=e);
-	SET PV=(SELECT SUM(puntosV) FROM Partidos WHERE evisit=e);
+	SET PL=(SELECT SUM(golesL) FROM Partidos WHERE eqlocal=e);
+	SET PV=(SELECT SUM(golesV) FROM Partidos WHERE eqvisit=e);
 	
 	SET total=IFNULL(PL,0)+IFNULL(PV,0);
 	RETURN total;
